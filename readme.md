@@ -2,6 +2,8 @@
 
 # 🚀 AssetFlow
 
+### while creating user by admin it set temp password as 123.
+
 ### Enterprise Asset & Resource Management System
 
 A centralized **Enterprise Asset & Resource Management System (ERP)** built to simplify how organizations manage physical assets and shared resources. AssetFlow replaces spreadsheets and manual processes with a secure, role-based platform for asset tracking, allocation, maintenance, booking, and analytics.
