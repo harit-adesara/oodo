@@ -3,7 +3,6 @@ import { mongoose, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
-import { type } from "os";
 
 const userSchema = new Schema(
   {
@@ -17,6 +16,10 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       required: true,
+    },
+    departement: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Departement",
     },
     email: {
       type: String,
@@ -37,6 +40,10 @@ const userSchema = new Schema(
     },
     forgetPasswordExpiry: {
       type: Date,
+    },
+    departement: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Department",
     },
     role: {
       type: String,
