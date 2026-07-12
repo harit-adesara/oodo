@@ -1,3 +1,4 @@
+// Path: oodo\backend\models\user.js
 import { mongoose, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
@@ -98,3 +99,4 @@ userSchema.methods.generateTemporaryToken = function () {
 };
 
 export const User = mongoose.model("User", userSchema);
+
