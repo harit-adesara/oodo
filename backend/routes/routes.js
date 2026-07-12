@@ -14,7 +14,7 @@ import {
 
 import { verifyJWT } from "../middleware/verifyJWT.js";
 
-// auth routes
+// auth routes start here
 
 router.route("/login").post(loginJWT); // done
 
@@ -81,7 +81,9 @@ import {
   getAllDepartments,
   getDepartmentAllocations,
 } from "../controllers/admin.js";
+
 import { verify } from "crypto";
+
 
 router.get("/assets", verifyJWT, getDepartmentAssets);
 
