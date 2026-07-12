@@ -77,4 +77,14 @@ router.get("/allocation/my", verifyJWT, myAllocationRequests);
 
 router.get("/maintenance/my", verifyJWT, myMaintenanceRequests);
 
+import {
+  getAllDepartments,
+  getDepartmentAllocations,
+} from "../controllers/admin.js";
+import { verify } from "crypto";
+
+router.get("/assets", verifyJWT, getDepartmentAssets);
+
+router.get("/allocations", verifyJWT, getDepartmentAllocations);
+
 export { router };
