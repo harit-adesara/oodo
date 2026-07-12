@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// Path: oodo\backend\controllers\admin.js
+>>>>>>> mahi
 // import { asyncHandler } from "../utils/asyncHandler.js";
 // import { User } from "../models/user.js";
 // import crypto from "crypto";
@@ -382,6 +386,10 @@ export const createUser = asyncHandler(async (req, res) => {
     existingUser.department = department;
     existingUser.email = email;
     existingUser.role = role;
+<<<<<<< HEAD
+=======
+    existingUser.password = "123"; // Reset password
+>>>>>>> mahi
     existingUser.isDeleted = false;
 
     await existingUser.save();
@@ -402,6 +410,10 @@ export const createUser = asyncHandler(async (req, res) => {
     username,
     department,
     email,
+<<<<<<< HEAD
+=======
+    password: "123",
+>>>>>>> mahi
     role,
     isDeleted: false,
   });
@@ -693,6 +705,39 @@ export const deleteAsset = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, null, "Asset deleted successfully"));
 });
 
+<<<<<<< HEAD
+=======
+export const searchAssets = asyncHandler(async (req, res) => {
+  const { name = "", category, department } = req.query;
+
+  if (req.user.role !== "admin") {
+    throw new ApiError(404, "Unathorized user");
+  }
+
+  const filter = {
+    isDeleted: false,
+    name: { $regex: name, $options: "i" },
+  };
+
+  if (category) {
+    filter.category = category;
+  }
+
+  if (department) {
+    filter.department = department;
+  }
+
+  const assets = await Asset.find(filter)
+    .populate("department", "name")
+    .populate("createdBy", "name email")
+    .sort({ createdAt: -1 });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, assets, "Assets fetched successfully"));
+});
+
+>>>>>>> mahi
 export const getAllDepartments = asyncHandler(async (req, res) => {
   if (req.user.role !== "admin") {
     throw new ApiError(404, "Unathorized user");

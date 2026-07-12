@@ -439,7 +439,11 @@ const forgotPasswordRequest = asyncHandler(async (req, res) => {
     subject: "Password reset request",
     mailgenContent: forgotPasswordMailgenContent(
       user.name,
-      `https://real-time-code-editor-vercodex.vercel.app/reset-password/${unHashedToken}`,
+      // Bug fix: this was hardcoded to a different project's (Vercodex)
+      // domain, so password reset emails sent users to the wrong app
+      // entirely. FRONTEND_URL lets this point at whatever origin the
+      // frontend is actually deployed on; defaults to the Vite dev server.
+      `${process.env.FRONTEND_URL || "http://localhost:5173"}/reset-password/${unHashedToken}`,
     ),
   });
 

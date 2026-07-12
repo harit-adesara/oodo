@@ -23,7 +23,11 @@
 // //               </svg>
 // //             </div>
 
+<<<<<<< HEAD
 // //             <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+=======
+// //             <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
+>>>>>>> mahi
 // //           </div>
 
 // //           {/* Loader Card */}
@@ -92,7 +96,11 @@
 //               </svg>
 //             </div>
 
+<<<<<<< HEAD
 //             <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+=======
+//             <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
+>>>>>>> mahi
 //           </div>
 
 //           {/* Loader Card */}
@@ -161,7 +169,7 @@ const ProtectedRoute = () => {
               </svg>
             </div>
 
-            <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+            <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
           </div>
 
           {/* Loader Card */}
@@ -201,7 +209,7 @@ const ProtectedRoute = () => {
     );
   }
 
-  return user ? <Outlet /> : <Navigate to="/" replace />;
+  return user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;

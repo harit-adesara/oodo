@@ -71,6 +71,12 @@ export const adminDeleteDepartment = (departmentId) =>
 export const adminCreateAsset = (payload) =>
   axiosInstance.post(`${API_BASE}/assets`, payload, withCreds);
 
+<<<<<<< HEAD
+=======
+export const adminSearchAssets = (params = {}) =>
+  axiosInstance.get(`${API_BASE}/assets/search`, { ...withCreds, params });
+
+>>>>>>> mahi
 export const adminUpdateAsset = (assetId, payload) =>
   axiosInstance.put(`${API_BASE}/assets/${assetId}`, payload, withCreds);
 

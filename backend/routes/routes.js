@@ -156,6 +156,30 @@ import {
 
 import { verifyJWT } from "../middleware/verifyJWT.js";
 
+// Bug fix: none of the asset-manager-only routes below (register/update/
+// delete asset, approve/reject allocation & maintenance) were ever checking
+// that the logged-in user actually IS an asset manager. verifyJWT only
+// confirms the user is logged in, not what role they hold, so any
+// authenticated employee/department head could hit these endpoints
+// directly. This mirrors the authorizeAssetManager middleware that already
+// existed for this in the old asset_manager router file.
+const authorizeAssetManager = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({
+      success: false,
+      message: "User not authenticated",
+    });
+  }
+
+  if (req.user.role !== "asset manager" && req.user.role !== "assetManager") {
+    return res.status(403).json({
+      success: false,
+      message: "You do not have permission to perform this action",
+    });
+  }
+  next();
+};
+
 // auth routes
 
 router.route("/login").post(loginJWT); // done
@@ -184,6 +208,10 @@ import {
   createAsset,
   updateAsset,
   deleteAsset,
+<<<<<<< HEAD
+=======
+  searchAssets,
+>>>>>>> mahi
   getAllDepartments,
 } from "../controllers/admin.js";
 
@@ -203,6 +231,11 @@ router.delete("/departments/:departmentId", verifyJWT, deleteDepartment);
 
 router.post("/assets", verifyJWT, createAsset);
 
+<<<<<<< HEAD
+=======
+router.get("/assets/search", verifyJWT, searchAssets);
+
+>>>>>>> mahi
 router.put("/assets/:assetId", verifyJWT, updateAsset);
 
 router.delete("/assets/:assetId", verifyJWT, deleteAsset);
@@ -265,6 +298,7 @@ import {
   rejectMaintenance,
 } from "../controllers/asset_manager.js";
 
+<<<<<<< HEAD
 router.route("/").post(verifyJWT, registerAsset).get(verifyJWT, getAllAssets);
 
 router
@@ -284,5 +318,41 @@ router.route("/maintenance").get(verifyJWT, getMaintenanceRequests);
 router.route("/maintenance/:id/approve").patch(verifyJWT, approveMaintenance);
 
 router.route("/maintenance/:id/reject").patch(verifyJWT, rejectMaintenance);
+=======
+router
+  .route("/")
+  .post(verifyJWT, authorizeAssetManager, registerAsset)
+  .get(verifyJWT, authorizeAssetManager, getAllAssets);
+
+router
+  .route("/:assetId")
+  .patch(verifyJWT, authorizeAssetManager, updateAssetByManager)
+  .delete(verifyJWT, authorizeAssetManager, deleteAssetByManager);
+
+router
+  .route("/allocation")
+  .get(verifyJWT, authorizeAssetManager, getAllocationRequests);
+
+router
+  .route("/allocation/:id/approve")
+  .patch(verifyJWT, authorizeAssetManager, approveAllocation);
+
+router
+  .route("/allocation/:id/reject")
+  .patch(verifyJWT, authorizeAssetManager, rejectAllocation);
+
+// Maintenance Management
+router
+  .route("/maintenance")
+  .get(verifyJWT, authorizeAssetManager, getMaintenanceRequests);
+
+router
+  .route("/maintenance/:id/approve")
+  .patch(verifyJWT, authorizeAssetManager, approveMaintenance);
+
+router
+  .route("/maintenance/:id/reject")
+  .patch(verifyJWT, authorizeAssetManager, rejectMaintenance);
+>>>>>>> mahi
 
 export { router };

@@ -23,7 +23,11 @@
 // //               </svg>
 // //             </div>
 
+<<<<<<< HEAD
 // //             <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+=======
+// //             <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
+>>>>>>> mahi
 // //           </div>
 
 // //           {/* Loader Card */}
@@ -94,7 +98,11 @@
 //               </svg>
 //             </div>
 
+<<<<<<< HEAD
 //             <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+=======
+//             <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
+>>>>>>> mahi
 //           </div>
 
 //           {/* Loader Card */}
@@ -165,7 +173,7 @@ const PublicRoute = () => {
               </svg>
             </div>
 
-            <h1 className="text-white text-xl font-semibold">GitRAG</h1>
+            <h1 className="text-white text-xl font-semibold">Asset Manager</h1>
           </div>
 
           {/* Loader Card */}

@@ -668,16 +668,6 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-[#35353f] text-sm mt-6">
-          Don't have an account?{" "}
-          <Link
-            className="text-violet-400 hover:text-violet-300 transition-colors"
-            to="/register"
-          >
-            Sign up
-          </Link>
-        </p>
       </div>
     </div>
   );
