@@ -41,7 +41,7 @@
 // //       setLoading(true);
 
 // //       const res = await axios.post(
-// //         `https://oodo.onrender.com/oodo/reset-password/${resetToken}`,
+// //         `http://localhost:3000/oodo/reset-password/${resetToken}`,
 // //         { newPassword: form.password },
 // //       );
 
@@ -303,7 +303,7 @@
 //       setLoading(true);
 
 //       const res = await axios.post(
-//         `https://oodo.onrender.com/oodo/reset-password/${resetToken}`,
+//         `http://localhost:3000/oodo/reset-password/${resetToken}`,
 //         { newPassword: form.password },
 //       );
 
@@ -565,7 +565,7 @@ const ResetPassword = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `https://oodo.onrender.com/oodo/reset-password/${resetToken}`,
+        `http://localhost:3000/oodo/reset-password/${resetToken}`,
         { newPassword: form.password },
       );
 

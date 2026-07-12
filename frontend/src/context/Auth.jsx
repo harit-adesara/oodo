@@ -10,7 +10,7 @@
 
 // //   const checkAuth = async () => {
 // //     try {
-// //       const res = await axiosInstance.get("https://oodo.onrender.com/oodo/me", {
+// //       const res = await axiosInstance.get("http://localhost:3000/oodo/me", {
 // //         withCredentials: true,
 // //       });
 
@@ -54,7 +54,7 @@
 
 //   const checkAuth = async () => {
 //     try {
-//       const res = await axiosInstance.get("https://oodo.onrender.com/oodo/me", {
+//       const res = await axiosInstance.get("http://localhost:3000/oodo/me", {
 //         withCredentials: true,
 //       });
 
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const res = await axiosInstance.get("https://oodo.onrender.com/oodo/me", {
+      const res = await axiosInstance.get("http://localhost:3000/oodo/me", {
         withCredentials: true,
       });
 

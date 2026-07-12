@@ -28,7 +28,7 @@
 
 //     try {
 //       await axios.post(
-//         "https://oodo.onrender.com/oodo/forgot-password",
+//         "http://localhost:3000/oodo/forgot-password",
 //         { email },
 //         { withCredentials: true },
 //       );
@@ -202,7 +202,7 @@ const ForgetPassword = () => {
 
     try {
       await axios.post(
-        "https://oodo.onrender.com/oodo/forgot-password",
+        "http://localhost:3000/oodo/forgot-password",
         { email },
         { withCredentials: true },
       );
