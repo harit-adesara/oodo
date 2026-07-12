@@ -1,5 +1,6 @@
 import express from "express";
 import { router } from "./routes/routes.js";
+import { assetRouter } from "./routes/asset.routes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 const app = express();
@@ -28,5 +29,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/oodo", router);
+app.use("/asset", assetRouter);
 
 export { app };
