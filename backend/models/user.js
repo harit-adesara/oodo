@@ -1,4 +1,3 @@
-// Path: oodo\backend\models\user.js
 import { mongoose, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
@@ -16,10 +15,6 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       required: true,
-    },
-    departement: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Departement",
     },
     email: {
       type: String,
@@ -41,7 +36,7 @@ const userSchema = new Schema(
     forgetPasswordExpiry: {
       type: Date,
     },
-    departement: {
+    department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
     },
@@ -110,4 +105,3 @@ userSchema.methods.generateTemporaryToken = function () {
 };
 
 export const User = mongoose.model("User", userSchema);
-

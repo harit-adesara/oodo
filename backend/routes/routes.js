@@ -43,7 +43,7 @@ import {
   updateAsset,
   deleteAsset,
   getAllDepartments,
-} from "../controllers/admin.controller.js";
+} from "../controllers/admin.js";
 
 router.post("/users", verifyJWT, createUser);
 
@@ -64,5 +64,17 @@ router.post("/assets", verifyJWT, createAsset);
 router.put("/assets/:assetId", verifyJWT, updateAsset);
 
 router.delete("/assets/:assetId", verifyJWT, deleteAsset);
+
+// employee
+
+router.post("/allocation/request", verifyJWT, requestAllocation);
+
+router.post("/maintenance/request", verifyJWT, requestMaintenance);
+
+router.get("/department/assets", verifyJWT, getDepartmentAssets);
+
+router.get("/allocation/my", verifyJWT, myAllocationRequests);
+
+router.get("/maintenance/my", verifyJWT, myMaintenanceRequests);
 
 export { router };

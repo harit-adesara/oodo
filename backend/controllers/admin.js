@@ -7,13 +7,13 @@ import { Department } from "../models/department.js";
 import { Asset } from "../models/asset.js";
 
 export const createUser = asyncHandler(async (req, res) => {
-  const { name, username, departement, email, role } = req.body;
+  const { name, username, department, email, role } = req.body;
 
   if (req.user.role !== "admin") {
     throw new ApiError(404, "Unathorized user");
   }
 
-  if (!name || !username || !departement || !email || !role) {
+  if (!name || !username || !department || !email || !role) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -34,7 +34,7 @@ export const createUser = asyncHandler(async (req, res) => {
 
     existingUser.name = name;
     existingUser.username = username;
-    existingUser.departement = departement;
+    existingUser.department = department;
     existingUser.email = email;
     existingUser.role = role;
     existingUser.isDeleted = false;
