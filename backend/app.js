@@ -48,12 +48,8 @@ app.use((req, res) => {
 // undefined. This normalizes both ApiError and any unexpected error into the
 // same { success, statusCode, msg, data } shape the frontend already expects.
 app.use((err, req, res, next) => {
-<<<<<<< HEAD
   const statusCode =
     err.statusCode && err.statusCode >= 100 ? err.statusCode : 500;
-=======
-  const statusCode = err.statusCode && err.statusCode >= 100 ? err.statusCode : 500;
->>>>>>> mahi
 
   if (statusCode >= 500) {
     console.error(err);
