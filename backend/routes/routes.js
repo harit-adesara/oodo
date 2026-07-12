@@ -30,4 +30,39 @@ router.route("/logout").post(verifyJWT, logOut); //done
 
 router.route("/change-password").post(verifyJWT, changePassword); // done
 
+// admin
+
+import {
+  createUser,
+  createDepartment,
+  deleteEmployee,
+  deleteDepartment,
+  searchEmployee,
+  searchDepartment,
+  createAsset,
+  updateAsset,
+  deleteAsset,
+  getAllDepartments,
+} from "../controllers/admin.controller.js";
+
+router.post("/users", verifyJWT, createUser);
+
+router.delete("/users/:userId", verifyJWT, deleteEmployee);
+
+router.get("/users/search", verifyJWT, searchEmployee);
+
+router.post("/departments", verifyJWT, createDepartment);
+
+router.get("/departments", verifyJWT, getAllDepartments);
+
+router.get("/departments/search", verifyJWT, searchDepartment);
+
+router.delete("/departments/:departmentId", verifyJWT, deleteDepartment);
+
+router.post("/assets", verifyJWT, createAsset);
+
+router.put("/assets/:assetId", verifyJWT, updateAsset);
+
+router.delete("/assets/:assetId", verifyJWT, deleteAsset);
+
 export { router };

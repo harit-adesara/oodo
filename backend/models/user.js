@@ -48,6 +48,10 @@ const userSchema = new Schema(
       type: String,
       enum: ["admin", "asset manager", "department head", "employee"],
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

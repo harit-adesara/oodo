@@ -34,6 +34,11 @@ const assetSchema = new Schema(
       ref: "Department",
     },
 
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
