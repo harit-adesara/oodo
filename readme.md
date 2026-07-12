@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🚀 AssetFlow
+
 ### Enterprise Asset & Resource Management System
 
 A centralized **Enterprise Asset & Resource Management System (ERP)** built to simplify how organizations manage physical assets and shared resources. AssetFlow replaces spreadsheets and manual processes with a secure, role-based platform for asset tracking, allocation, maintenance, booking, and analytics.
@@ -122,12 +123,12 @@ Real-Time Dashboard & Reports
 
 # 👥 User Roles
 
-| Role | Responsibilities |
-|------|-------------------|
-| 👨‍💼 Admin | Manage departments, employees, categories, roles, analytics |
-| 📦 Asset Manager | Register assets, allocate assets, manage maintenance, approve transfers |
-| 🏢 Department Head | Approve requests, monitor department assets, manage bookings |
-| 👨‍💻 Employee | Request assets, raise maintenance requests, return assets, book resources |
+| Role               | Responsibilities                                                          |
+| ------------------ | ------------------------------------------------------------------------- |
+| 👨‍💼 Admin           | Manage departments, employees, categories, roles, analytics               |
+| 📦 Asset Manager   | Register assets, allocate assets, manage maintenance, approve transfers   |
+| 🏢 Department Head | Approve requests, monitor department assets, manage bookings              |
+| 👨‍💻 Employee        | Request assets, raise maintenance requests, return assets, book resources |
 
 ---
 
@@ -211,20 +212,6 @@ cd frontend
 npm install
 npm run dev
 ```
-
----
-
-# 🚀 Future Enhancements
-
-- ✅ QR Code Based Asset Tracking
-- ✅ Barcode Scanner Integration
-- ✅ Email Notifications
-- ✅ AI-Powered Asset Insights
-- ✅ Predictive Maintenance
-- ✅ Mobile Application
-- ✅ Advanced Analytics Dashboard
-- ✅ Audit Logs
-- ✅ Multi-Organization Support
 
 ---
 
