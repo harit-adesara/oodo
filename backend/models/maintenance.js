@@ -1,46 +1,38 @@
-// Path: oodo\backend\models\maintenance.js
 import { mongoose, Schema } from "mongoose";
 import { Asset } from "./asset.js";
 import { User } from "./user.js";
 
-
-const maintenanceSchema = new Schema({
-
-    asset:{
-        type:Schema.Types.ObjectId,
-        ref:"Asset"
+const maintenanceSchema = new Schema(
+  {
+    asset: {
+      type: Schema.Types.ObjectId,
+      ref: "Asset",
     },
 
-    requestedBy:{
-        type:Schema.Types.ObjectId,
-        ref:"User"
+    requestedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
 
-    approvedBy:{
-        type:Schema.Types.ObjectId,
-        ref:"User",
-        default:null
+    approvedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
 
-    issue:String,
+    issue: String,
 
-
-    status:{
-        type:String,
-        enum:[
-            "pending",
-            "approved",
-            "rejected",
-            "resolved"
-        ],
-        default:"pending"
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
     },
 
-    resolution:String
-
-},{
-    timestamps:true
-});
+    resolution: String,
+  },
+  {
+    timestamps: true,
+  },
+);
 
 export const Maintenance = mongoose.model("Maintenance", maintenanceSchema);
-
