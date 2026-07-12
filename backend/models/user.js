@@ -2,6 +2,7 @@ import { mongoose, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
+import { type } from "os";
 
 const userSchema = new Schema(
   {
@@ -30,21 +31,15 @@ const userSchema = new Schema(
     refreshToken: {
       type: String,
     },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
-    emailVerificationToken: {
-      type: String,
-    },
-    emailVerificationExpiry: {
-      type: Date,
-    },
     forgetPasswordToken: {
       type: String,
     },
     forgetPasswordExpiry: {
       type: Date,
+    },
+    role: {
+      type: String,
+      enum: ["admin", "asset manager", "department head", "employee"],
     },
   },
   {

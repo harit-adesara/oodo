@@ -39,10 +39,6 @@ const loginJWT = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
-  if (!user.isEmailVerified) {
-    throw new ApiError(404, "Authorize your email");
-  }
-
   const check = await user.isPasswordCorrect(password);
 
   if (!check) {
@@ -53,7 +49,7 @@ const loginJWT = asyncHandler(async (req, res) => {
     user._id,
   );
   const loggedInUser = await User.findById(user._id).select(
-    "-password -isEmailVerified -refreshToken -forgetPasswordExpiry -forgetPasswordToken",
+    "-password -refreshToken -forgetPasswordExpiry -forgetPasswordToken",
   );
   const accessTokenOptions = {
     httpOnly: true,
@@ -102,93 +98,6 @@ const logOut = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged out successfully"));
-});
-
-const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, username } = req.body;
-
-  if (!name || !email || !password || !username) {
-    throw new ApiError(400, "Name, email,username and password are required");
-  }
-
-  let user = await User.findOne({ $or: [{ email }, { username }] });
-
-  if (user) {
-    throw new ApiError(409, "User already exists");
-  }
-
-  user = await User.create({
-    name,
-    email,
-    password,
-    username,
-    isEmailVerified: false,
-  });
-
-  const { unHashedToken, hashedToken, tokenExpiry } =
-    user.generateTemporaryToken();
-
-  user.emailVerificationToken = hashedToken;
-  user.emailVerificationExpiry = tokenExpiry;
-
-  await user.save({ validateBeforeSave: false });
-
-  await sendEmail({
-    email: user.email,
-    subject: "Verify your account",
-    mailgenContent: registerEmail(
-      user.name,
-      `https://real-time-code-editor-vercodex.vercel.app/verify/${unHashedToken}`,
-    ),
-  });
-
-  const createdUser = await User.findById(user._id).select(
-    "-password -refreshToken -emailVerificationToken -emailVerificationExpiry",
-  );
-
-  return res
-    .status(201)
-    .json(
-      new ApiResponse(201, { createdUser }, "User registered successfully"),
-    );
-});
-
-const verifyEmail = asyncHandler(async (req, res) => {
-  const { verificationToken } = req.params;
-
-  if (!verificationToken) {
-    throw new ApiError(400, "Email verification token is missing");
-  }
-
-  let hashedToken = crypto
-    .createHash("sha256")
-    .update(verificationToken)
-    .digest("hex");
-
-  const user = await User.findOne({
-    emailVerificationToken: hashedToken,
-    emailVerificationExpiry: { $gt: Date.now() },
-  });
-
-  if (!user) {
-    throw new ApiError(400, "Token is invalid or expired");
-  }
-
-  user.emailVerificationToken = undefined;
-  user.emailVerificationExpiry = undefined;
-
-  user.isEmailVerified = true;
-  await user.save({ validateBeforeSave: false });
-
-  return res.status(200).json(
-    new ApiResponse(
-      200,
-      {
-        isEmailVerified: true,
-      },
-      "Email is verified",
-    ),
-  );
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
@@ -335,53 +244,13 @@ const changePassword = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "Password changed successfully"));
 });
 
-const resendRegisterMail = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-
-  if (!email) {
-    throw new ApiError(400, "Email is required");
-  }
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    throw new ApiError(404, "User not found");
-  }
-
-  if (user.isEmailVerified) {
-    throw new ApiError(404, "Email is already verified");
-  }
-
-  const { unHashedToken, hashedToken, tokenExpiry } =
-    user.generateTemporaryToken();
-
-  user.emailVerificationToken = hashedToken;
-  user.emailVerificationExpiry = tokenExpiry;
-
-  await user.save();
-
-  await sendEmail({
-    email: user.email,
-    subject: "Verify your account",
-    mailgenContent: registerEmail(
-      user.name,
-      `https://real-time-code-editor-vercodex.vercel.app/verify/${unHashedToken}`,
-    ),
-  });
-
-  res.status(200).json(new ApiResponse(200, {}, "Invitation email resent"));
-});
-
 export {
   loginJWT,
   logOut,
   generateAccessAndRefreshToken,
-  registerUser,
-  verifyEmail,
   getCurrentUser,
   refreshAccessToken,
   forgotPasswordRequest,
   resetForgetPassword,
   changePassword,
-  resendRegisterMail,
 };
