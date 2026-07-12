@@ -208,10 +208,7 @@ import {
   createAsset,
   updateAsset,
   deleteAsset,
-<<<<<<< HEAD
-=======
   searchAssets,
->>>>>>> mahi
   getAllDepartments,
 } from "../controllers/admin.js";
 
@@ -231,11 +228,8 @@ router.delete("/departments/:departmentId", verifyJWT, deleteDepartment);
 
 router.post("/assets", verifyJWT, createAsset);
 
-<<<<<<< HEAD
-=======
 router.get("/assets/search", verifyJWT, searchAssets);
 
->>>>>>> mahi
 router.put("/assets/:assetId", verifyJWT, updateAsset);
 
 router.delete("/assets/:assetId", verifyJWT, deleteAsset);
@@ -298,27 +292,6 @@ import {
   rejectMaintenance,
 } from "../controllers/asset_manager.js";
 
-<<<<<<< HEAD
-router.route("/").post(verifyJWT, registerAsset).get(verifyJWT, getAllAssets);
-
-router
-  .route("/:assetId")
-  .patch(verifyJWT, updateAssetByManager)
-  .delete(verifyJWT, deleteAssetByManager);
-
-router.route("/allocation").get(verifyJWT, getAllocationRequests);
-
-router.route("/allocation/:id/approve").patch(verifyJWT, approveAllocation);
-
-router.route("/allocation/:id/reject").patch(verifyJWT, rejectAllocation);
-
-// Maintenance Management
-router.route("/maintenance").get(verifyJWT, getMaintenanceRequests);
-
-router.route("/maintenance/:id/approve").patch(verifyJWT, approveMaintenance);
-
-router.route("/maintenance/:id/reject").patch(verifyJWT, rejectMaintenance);
-=======
 router
   .route("/")
   .post(verifyJWT, authorizeAssetManager, registerAsset)
@@ -353,6 +326,5 @@ router
 router
   .route("/maintenance/:id/reject")
   .patch(verifyJWT, authorizeAssetManager, rejectMaintenance);
->>>>>>> mahi
 
 export { router };
