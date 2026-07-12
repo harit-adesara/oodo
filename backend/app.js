@@ -39,14 +39,6 @@ app.use((req, res) => {
   });
 });
 
-// Centralized error handler.
-// Every controller is wrapped in asyncHandler, which forwards thrown errors
-// (mostly ApiError instances) to next(err) - but express only sends those to
-// a JSON response if something here actually catches them. Without this,
-// every thrown ApiError fell through to Express's default HTML error page,
-// so the frontend's axios error.response.data.message reads would always be
-// undefined. This normalizes both ApiError and any unexpected error into the
-// same { success, statusCode, msg, data } shape the frontend already expects.
 app.use((err, req, res, next) => {
   const statusCode =
     err.statusCode && err.statusCode >= 100 ? err.statusCode : 500;
