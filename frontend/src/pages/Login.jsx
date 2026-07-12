@@ -29,7 +29,7 @@
 
 // //     try {
 // //       const result = await axios.post(
-// //         "http://localhost:3000/oodo/login",
+// //         "https://oodo.onrender.com/oodo/login",
 // //         {
 // //           email,
 // //           password,
@@ -276,7 +276,7 @@
 
 //     try {
 //       await axios.post(
-//         "http://localhost:3000/oodo/forgot-password",
+//         "https://oodo.onrender.com/oodo/forgot-password",
 //         { email },
 //         { withCredentials: true },
 //       );
@@ -456,7 +456,7 @@ const Login = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:3000/oodo/login",
+        "https://oodo.onrender.com/oodo/login",
         {
           email,
           password,
@@ -667,7 +667,6 @@ const Login = () => {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

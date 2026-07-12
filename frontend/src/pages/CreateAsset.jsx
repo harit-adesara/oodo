@@ -27,7 +27,7 @@ const CreateAsset = () => {
     const fetchDepartments = async () => {
       try {
         const res = await axiosInstance.get(
-          "http://localhost:3000/oodo/departments",
+          "https://oodo.onrender.com/oodo/departments",
           { withCredentials: true },
         );
         const depts = res.data?.data || [];
@@ -67,7 +67,7 @@ const CreateAsset = () => {
 
     try {
       const res = await axiosInstance.post(
-        "http://localhost:3000/oodo/assets",
+        "https://oodo.onrender.com/oodo/assets",
         {
           assetTag: form.assetTag,
           name: form.name,

@@ -2,7 +2,7 @@ import axiosInstance from "./axios.js";
 
 // Single source of truth for the backend origin. Change this once if the
 // API ever moves off localhost:3000.
-export const API_BASE = "http://localhost:3000/oodo";
+export const API_BASE = "https://oodo.onrender.com/oodo";
 
 const withCreds = { withCredentials: true };
 
